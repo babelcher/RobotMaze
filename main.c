@@ -15,20 +15,24 @@ int main(void) {
 	while (1) {
 
 		if (LeftSensorReading() > 0x250) {
-			stopRight();
+			moveRightForward25Percent();
 			moveLeftForward();
-			__delay_cycles(10000);
+			__delay_cycles(2000);
 
-		} else {
+		} else if(LeftSensorReading() < 0x2A0){
 			moveLeftForward25Percent();
 			moveRightForward();
-			__delay_cycles(10000);
+			__delay_cycles(2000);
+		}
+		else{
+			moveForward();
+			__delay_cycles(1000);
 		}
 
 		if (CenterSensorReading() > 0x250) {
 			moveLeftForward();
 			moveRightBackward();
-			__delay_cycles(100000);
+			__delay_cycles(10000);
 		}
 
 	}
