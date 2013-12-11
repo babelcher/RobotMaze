@@ -17,6 +17,7 @@ int main(void) {
 		if (LeftSensorReading() > 0x250) {
 			stopRight();
 			moveLeftForward();
+			__delay_cycles(10000);
 
 		} else {
 			moveLeftForward25Percent();
@@ -24,9 +25,10 @@ int main(void) {
 			__delay_cycles(10000);
 		}
 
-		if (CenterSensorReading() > 0x400) {
-			rightTurn();
-
+		if (CenterSensorReading() > 0x250) {
+			moveLeftForward();
+			moveRightBackward();
+			__delay_cycles(100000);
 		}
 
 	}
