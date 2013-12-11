@@ -14,14 +14,21 @@ int main(void) {
 
 	while (1) {
 
-		if (LeftSensorReading() < 0x250) {
-			moveLeftForward25Percent();
-			moveRightForward();
-
-		} else {
+		if (LeftSensorReading() > 0x250) {
 			stopRight();
 			moveLeftForward();
+
+		} else {
+			moveLeftForward25Percent();
+			moveRightForward();
+			__delay_cycles(10000);
 		}
+
+		if (CenterSensorReading() > 0x400) {
+			rightTurn();
+
+		}
+
 	}
 	return 0;
 }
